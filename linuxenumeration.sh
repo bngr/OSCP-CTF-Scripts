@@ -33,6 +33,8 @@ env
 echo ""
 
 echo "-----USERS ON BOX-----"
+ls -la /home/
+echo ""
 cat /etc/passwd
 echo ""
 
@@ -102,14 +104,33 @@ ls -la /etc/ | grep shadow
 echo ""
 
 echo "~The following are stretches, but could be useful if found~"
+
 #list configuration files in /etc/:
 echo "-----CONFIGURATION FILES IN /ETC/-----"
 ls -la /etc/ | grep .conf
 echo ""
 
+#list backups in /var/backups
+echo "-----BACKUPS-----"
+ls -la /var/backups/
+echo ""
+
+#current user bash history
+echo "-----BASH HISTORY-----"
+ls -la ~/.bash_history
+echo ""
+cat ~/.bash_history
+echo ""
+
+#ssh folders to check
+echo "-----SSH INFO-----"
+ls -la /etc/ | grep ssh
+echo ""
+
+#if the machine is hosting a webpage, sometimes this is useful
 echo "-----WEB FILES-----"
 ls -la /var/www/html
-echo""
+echo ""
 
 echo "-----UNMOUNTED FILE SYSTEMS-----"
 cat /etc/fstab
