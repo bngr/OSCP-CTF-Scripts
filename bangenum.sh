@@ -52,11 +52,7 @@ echo -----"SUID EXECUTABLES-----"
 find /* -user root -perm -4000 -print 2>/dev/null
 echo ""
 
-#running processes
-echo "-----RUNNING PROCESSES-----"
-ps aux
-echo ""
-
+#might be helpful to run this without looking for root processes aswell
 echo "-----RUNNING PROCESSES AS ROOT-----"
 ps aux | grep root
 echo ""
@@ -125,6 +121,7 @@ echo ""
 #ssh folders to check
 echo "-----SSH INFO-----"
 ls -la /etc/ | grep ssh
+ls -la ~/.ssh/
 echo ""
 
 #if the machine is hosting a webpage, sometimes this is useful
