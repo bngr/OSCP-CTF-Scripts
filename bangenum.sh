@@ -7,7 +7,7 @@ echo "----------------------------------------"
 echo ""
 
 #host information
-echo "-----HOSTNAME-----"
+echo "-----HOST INFORMATION-----"
 hostname
 echo ""
 uname -a
@@ -26,13 +26,13 @@ whoami
 id
 echo ""
 
+echo "-----ENV INFO-----"
+env
+echo ""
+
 #this might need a passwd
 echo "-----WHAT CAN WE RUN AS SUDO?-----"
 sudo -l
-echo ""
-
-echo "-----ENV INFO-----"
-env
 echo ""
 
 echo "-----USERS ON BOX-----"
@@ -130,7 +130,7 @@ echo "-----UNMOUNTED FILE SYSTEMS-----"
 cat /etc/fstab
 echo ""
 
-#as long as your http server is still running on your attacker,
+#obviously will only work if host http server is up
 #let's grab the other scripts if we need more enumeration
 #choose if you want to grab more files
 echo "Initial enumeration has completed."
