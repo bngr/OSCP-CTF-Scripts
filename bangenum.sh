@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#this is a short script to do initial linux enumeration. I found that running
+#the standard linenum.sh or privchecker.py spit out way too much info
+#for my eyes to handle, so this makes it easy to observe the basics - 
+#then gives you the option to grab the other scripts at the end.
+#use it, or don't. i'm a wall of text, not a cop
+
 echo ""
 echo "----------------------------------------"
 echo "| Linux Enumeration Script by @bngrsec |"
@@ -21,17 +27,17 @@ uname -i
 echo ""
 
 #user information
-echo "-----USER INFO-----"
+echo "-----USER INFORMATION-----"
 whoami
 id
 echo ""
 
-echo "-----ENV INFO-----"
+echo "-----ENVIRONMENT-----"
 env
 echo ""
 
 #this might need a passwd
-echo "-----WHAT CAN WE RUN AS SUDO?-----"
+echo "-----SUDO PERMISSIONS-----"
 sudo -l
 echo ""
 
@@ -53,10 +59,10 @@ echo "-----RUNNING PROCESSES AS ROOT-----"
 ps aux | grep root
 echo ""
 
-echo "-----NETWORK INFO-----"
-route
-echo ""
+echo "-----NETWORK INFORMATION-----"
 netstat -antup
+echo ""
+route
 echo ""
 
 #write applications to text file, because the output is usually huge
@@ -132,7 +138,7 @@ echo ""
 
 #obviously will only work if host http server is up
 #let's grab the other scripts if we need more enumeration
-#choose if you want to grab more files
+#choose if you want to grab more files - edit according to ip/script names obv
 echo "Initial enumeration has completed."
 echo "Would you like to grab more enum-scripts from your attacking host? [y/n]"
 read varname
