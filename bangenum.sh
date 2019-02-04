@@ -44,7 +44,7 @@ w
 echo ""
 
 #find suid executables
-echo -----"SUID EXECUTABLES-----"
+echo "-----SUID EXECUTABLES-----"
 find /* -user root -perm -4000 -print 2>/dev/null
 echo ""
 
