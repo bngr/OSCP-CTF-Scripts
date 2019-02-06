@@ -28,7 +28,7 @@ echo ""
 echo "-----ARCH-----"
 arch = $(uname -i)
 echo "$host architecture is $arch."
-if [[ $arch == *'x86_64*']];
+if [[ $arch == *'x86_64'*]];
 then
   echo "[*] This is 64-bit."
 else 
