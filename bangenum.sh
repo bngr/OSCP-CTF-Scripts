@@ -70,7 +70,7 @@ echo ""
 #find suid executables
 #nmap, find, vim, bash, more, less, nano, cp
 #yes, im doing this completely inefficiently. fight me
-echo -----"SUID EXECUTABLES-----"
+echo "-----SUID EXECUTABLES-----"
 find /* -user root -perm -4000 -print 2>/dev/null
 echo ""
 echo "[==>] Searching for insta-SUID-wins:"
