@@ -42,6 +42,7 @@ whoami
 id
 echo ""
 
+#eventually check for '.' in $path
 echo "-----ENVIRONMENT-----"
 env
 echo ""
