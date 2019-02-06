@@ -53,7 +53,8 @@ echo "[!] If you don't have a password, just press enter a few times."
 sudo -l
 echo ""
 
-#check for easy known OutOfBox account that usually has no password set 
+#check for easy known OutOfBox account that usually has no password set
+#which might be useful if you are currently on a very low-priv account
 echo "-----USERS ON BOX-----"
 ls -la /home/
 echo ""
@@ -62,7 +63,7 @@ echo $listpasswd
 if [[ $listpasswd == *'OutOfBox'* ]];
 then
   echo ""
-  echo "[*] OutOfBox account observed. SSH as OutOfBox with no password."
+  echo "[*] OutOfBox account observed. OutOfBox usually has no password set."
 fi
 echo ""
 w
