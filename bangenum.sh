@@ -14,8 +14,8 @@ echo ""
 
 #host information
 echo "-----HOST INFORMATION-----"
-host = $(hostname)
-echo $host
+name=$(hostname)
+echo "Hostname is $name"
 echo ""
 uname -a
 echo ""
@@ -26,13 +26,14 @@ echo ""
 #run a check to see what the arch is, then tell you what that actually is
 #i usually find myself referring to my notes or googling the output, hopefully this works
 echo "-----ARCH-----"
-arch = $(uname -i)
-echo "$host architecture is $arch."
-if [[ $arch == *'x86_64'*]];
+arch=$(uname -i)
+echo "$name architecture is $arch."
+if [[ $arch == *'x86_64'* ]];
 then
   echo "[*] This is 64-bit."
 else 
-  echo "[*] This is 32-bit."
+  echo "[*] This is 32-bit. (unless arch is unknown)."
+
 fi
 echo ""
 
@@ -58,8 +59,8 @@ echo ""
 echo "-----USERS ON BOX-----"
 ls -la /home/
 echo ""
-listpasswd =$(cat /etc/passwd)
-echo $listpasswd
+listpasswd=$(cat /etc/passwd)
+cat /etc/passwd
 if [[ $listpasswd == *'OutOfBox'* ]];
 then
   echo ""
@@ -169,7 +170,7 @@ echo ""
 echo "-----BASH HISTORY-----"
 ls -la ~/.bash_history
 echo ""
-cat ~/.bash_history
+head -25 ~/.bash_history
 echo ""
 
 #ssh folders to check
