@@ -154,7 +154,8 @@ ls -la /etc/ | grep passwd
 ls -la /etc/ | grep shadow
 echo ""
 
-echo "~The following are stretches, but could be useful if found~"
+echo "[!] The following are stretches, but could be useful if found."
+echo ""
 
 #list configuration files in /etc/:
 echo "-----CONFIGURATION FILES IN /ETC/-----"
@@ -175,7 +176,7 @@ echo ""
 
 #ssh folders to check
 echo "-----SSH INFO-----"
-ls -la /etc/ | grep ssh
+ls -la /etc/ssh
 ls -la ~/.ssh/
 echo ""
 
@@ -187,7 +188,7 @@ echo ""
 echo "-----UNMOUNTED FILE SYSTEMS-----"
 cat /etc/fstab
 echo ""
-echo "Check manually if the system has unmounted NFS shares. 'showmount -e [target IP]' from your Kali box.
+echo " [!] Check manually if the system has unmounted NFS shares. 'showmount -e [target IP]' from your Kali box.
 echo ""
 
 #obviously will only work if host http server is up
