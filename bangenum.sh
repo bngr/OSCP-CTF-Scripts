@@ -187,6 +187,8 @@ echo ""
 echo "-----UNMOUNTED FILE SYSTEMS-----"
 cat /etc/fstab
 echo ""
+echo "Check manually if the system has unmounted NFS shares. 'showmount -e [target IP]' from your Kali box.
+echo ""
 
 #obviously will only work if host http server is up
 #let's grab the other scripts if we need more enumeration
