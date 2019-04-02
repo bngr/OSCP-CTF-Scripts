@@ -46,7 +46,7 @@ echo ""
 echo "-----ENVIRONMENT-----"
 env
 checkpath=$(echo $PATH)
-if [[ $checkpath == *./* ]];
+if [[ $checkpath == *'./'* ]];
 then
   echo ""
   echo "[*] Dot in user's \$PATH. This can be used for privilege escalation."
