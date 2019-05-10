@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 #use this to decode a T9Num string to ascii
 #example: 222334477788 = CEHRU or something like that
