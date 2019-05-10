@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 #use this to decode a T9Num string to ascii
-#example: 222334477788 = CEHRU or something like that
-#will not handle consecutive letters from the same number, so sry :(
+#does not print spaces and could contain a few errors. still beats doing it by hand
+#example from hackthebox.eu challenge 'bank heist'
+#python num2txt.py
+#Paste cipher with no spaces: 44433399966688277733777332344466484433222444744337779996668827773366655299999966688777777744277733666333844334433444777784447777444669996668877744666887777338443355339998666844335556662225544477772233555666946668666727774447777
+#Input: ['4x3', '3x3', '9x3', '6x3', '8x2', '2x1', '7x3', '3x2', '7x3', '3x2', '2x1', '3x1', '4x3', '6x2', '4x1', '8x1', '4x2', '3x2', '2x3', '4x3', '7x1', '4x2', '3x2', '7x3', '9x3', '6x3', '8x2', '2x1', '7x3', '3x2', '6x3', '5x2', '2x1', '9x6', '6x3', '8x2', '7x7', '4x2', '2x1', '7x3', '3x2', '6x3', '3x3', '8x1', '4x2', '3x2', '4x2', '3x2', '4x3', '7x4', '8x1', '4x3', '7x4', '4x3', '6x2', '9x3', '6x3', '8x2', '7x3', '4x2', '6x3', '8x2', '7x4', '3x2', '8x1', '4x2', '3x2', '5x2', '3x2', '9x3', '8x1', '6x3', '8x1', '4x2', '3x2', '5x3', '6x3', '2x3', '5x2', '4x3', '7x4', '2x2', '3x2', '5x3', '6x3', '9x1', '4x1', '6x3', '8x1', '6x3', '7x1', '2x1', '7x3', '4x3', '7x4']
+#Decoded: IFYOUAREREADINGTHECIPHERYOUAREOKAOUHAREOFTHEHEISTISINYOURHOUSETHEKEYTOTHELOCKISBELOWGOTOPARIS
 
 from itertools import groupby
-import sys
 
 finalstring = ['Decoded: ']
 
@@ -114,36 +117,3 @@ def main():
     print(decoded_solution)
 
 main()
-
-
-
-
-
-#Key
-
-#('2', 1) == "A"
-#('2', 2) == "B"
-#('2', 3) == "C"
-#('3', 1) == "D"
-#('3', 2) == "E"
-#('3', 3) == "F"
-#('4', 1) == "G"
-#('4', 2) == "H"
-#('4', 3) == "I"
-#('5', 1) == "J"
-#('5', 2) == "K"
-#('5', 3) == "L"
-#('6', 1) == "M"
-#('6', 2) == "N"
-#('6', 3) == "O"
-#('7', 1) == "P"
-#('7', 2) == "Q"
-#('7', 3) == "R"
-#('7', 4) == "S"
-#('8', 1) == "T"
-#('8', 2) == "U"
-#('8', 3) == "V"
-#('9', 1) == "W"
-#('9', 2) == "X"
-#('9', 3) == "Y"
-#('9', 4) == "Z"
