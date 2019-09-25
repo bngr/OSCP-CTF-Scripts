@@ -3,7 +3,6 @@
 #this is a short script to do initial linux enumeration. I found that running
 #the standard linenum.sh or privchecker.py spit out way too much info
 #for my eyes to handle, so this makes it easy to observe the basics -
-#then gives you the option to grab the other scripts at the end.
 #use it, or don't. i'm a wall of text, not a cop
 
 echo ""
