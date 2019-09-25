@@ -50,8 +50,9 @@ if [[ $checkpath == *'./'* ]];
 then
   echo ""
   echo "[*] Dot in user's \$PATH. This can be used for privilege escalation."
+fi
 echo ""
-
+ 
 #this might need a passwd
 echo "-----SUDO PERMISSIONS-----"
 echo "[!] If you don't have a password, just press enter a few times."
